@@ -484,7 +484,12 @@
 						<Type><![CDATA[PowerSource]]></Type>
 					</Parameter>
 					<Body><![CDATA[return PowerSource.of(
-	in.getEmissionsMTPTU().multiply(() -> resultingEmissionsFraction),
+	in.getEmissionsMTPTU().multiply(() -> {
+		if (inState(SequestrationOnline)) {
+			return resultingEmissionsFraction;
+		}
+		return 1.0;
+	}),
 	in.getPowerOutputMWh().unchanged(),
 	in.getOperatingCostsPTU().add(() -> costToMaintainPTU)
 );]]></Body>
