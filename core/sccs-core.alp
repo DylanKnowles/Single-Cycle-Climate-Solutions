@@ -440,53 +440,6 @@
 	<JavaClasses>
 		<!--   =========   Java Class   ========  -->
 		<JavaClass>
-			<Id>1628794886303</Id>
-			<Name><![CDATA[Tactic]]></Name>
-			<Text><![CDATA[import java.util.function.Consumer;
-
-/**
- * A tactic that may be applied on a particular date.
- * E.g. begin constructing a solar farm.
- * @author dknowles
- *
- */
-public interface Tactic extends Consumer<Date>
-{
-
-}]]></Text>
-		</JavaClass>
-		<!--   =========   Java Class   ========  -->
-		<JavaClass>
-			<Id>1628794984474</Id>
-			<Name><![CDATA[Strategy]]></Name>
-			<Text><![CDATA[/**
- * A collection of tactics used to accomplish a specific goal.
- */	
-public class Strategy implements Serializable {
-	
-	/**
-	 * @see #getTactics()
-	 */
-	private Map<Tactic, Date> tactics;
-
-    /**
-     * Creates the strategy, recording its tactics
-     * and their intended start date.
-     */
-    public Strategy(Map<Tactic, Date> tactics) {
-    }
-    
-	/**
-	 * The tactics that will be applied in the strategy.
-	 */
-    public Map<Tactic, Date> getTactics() {
-    	return Collections.unmodifiableMap(this.tactics);
-    }
-    
-}]]></Text>
-		</JavaClass>
-		<!--   =========   Java Class   ========  -->
-		<JavaClass>
 			<Id>1628796624477</Id>
 			<Name><![CDATA[SeasonalValue]]></Name>
 			<Text><![CDATA[/**
@@ -571,6 +524,24 @@ public interface Output extends Supplier<Double>
 	public default Output unchanged() {
 		return this;
 	}
+}]]></Text>
+		</JavaClass>
+		<!--   =========   Java Class   ========  -->
+		<JavaClass>
+			<Id>1629391368401</Id>
+			<Name><![CDATA[Opportunity]]></Name>
+			<Text><![CDATA[/** 
+ * An opportunity to impact greenhouse gas emissions.
+ * @author dknowles
+ *
+ */
+public interface Opportunity
+{
+	/**
+	 * @return
+	 * 	The opportunity's current C02 emissions in megatonnes per time unit.
+	 */
+	Output getEmissionsMTPTU();
 }]]></Text>
 		</JavaClass>
 	</JavaClasses>

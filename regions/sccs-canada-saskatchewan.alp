@@ -17,7 +17,8 @@
 			<Id>1628699862734</Id>
 			<Name><![CDATA[Main]]></Name>
 			<ClientAreaTopLeft><X>0</X><Y>0</Y></ClientAreaTopLeft>
-			<StartupCode><![CDATA[boundaryDamPowerStationUnit3.applyTactics(List.of(boundaryDamUnit3CCS));]]></StartupCode>
+			<Import><![CDATA[import com.luminesim.citation.ReferenceList;
+import java.util.stream.Stream;]]></Import>
 			<Generic>false</Generic>
 			<GenericParameter>
 				<Id>1628699862732</Id>
@@ -111,10 +112,188 @@
 			<CurrentLevel>1628699862733</CurrentLevel>
 			<ConnectionsId>1628699862727</ConnectionsId>
 			<Variables>
+				<Variable Class="PlainVariable">
+					<Id>1629603905181</Id>
+					<Name><![CDATA[StartingCoalGeneratingCapacityMW]]></Name>
+					<X>570</X><Y>70</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="true" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[Stream.of(
+	// Crown corp
+	references().use(672.0, skPowerStationReference("Boundary Dam Power Station")),
+	references().use(582.0, skPowerStationReference("Poplar River Power Station")),
+	references().use(276.0, skPowerStationReference("Shand Power Station"))
+).reduce(Double::sum).get()]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1629603952316</Id>
+					<Name><![CDATA[bibliography]]></Name>
+					<X>570</X><Y>330</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="private" StaticVariable="false">
+						<Type><![CDATA[ReferenceList]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[new ReferenceList()]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1629604599393</Id>
+					<Name><![CDATA[StartingNaturalGasGeneratingCapacityMW]]></Name>
+					<X>570</X><Y>160</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="true" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[Stream.of(
+	// Crown corp
+	references().use(228.0, skPowerStationReference("Cory Cogeneration Station")),
+	references().use(92.0, skPowerStationReference("Emine Power Station")),
+	references().use(79.0, skPowerStationReference("Landis Power Station")),
+	references().use(44.0, skPowerStationReference("Meadow Lake Power Station")),
+	references().use(634.0, skPowerStationReference("Queen Elizabeth Power Station")),
+	references().use(138.0, skPowerStationReference("Yellowhead Power Station")),
+	
+	// Non-Crown corp
+	references().use(210.0, skPowerStationReference("Meridian Cogeneration Station")),
+	references().use(260.0, skPowerStationReference("North Battleford Generating Station"))
+).reduce(Double::sum).get()]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1629604727524</Id>
+					<Name><![CDATA[StartingWindGeneratingCapacityMW]]></Name>
+					<X>570</X><Y>210</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="true" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[Stream.of(
+	// Crown corp
+	references().use(150.0, skPowerStationReference("Centennial Wind Power Facility")),
+	references().use(11.0, skPowerStationReference("Cypress Windo Power Facility")),
+	
+	// Non-Crown corp
+	references().use(27.0, skPowerStationReference("Red Lily Wind Facility")),
+	references().use(23.0, skPowerStationReference("Morse Wind Facility")),
+	references().use(11.0, skPowerStationReference("SunBridge Wind Power Facility")),
+	references().use(20.0, skPowerStationReference("Western Lily Wind Power Facility"))
+).reduce(Double::sum).get()]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1629604802324</Id>
+					<Name><![CDATA[StartingHydroelectricGeneratingCapacityMW]]></Name>
+					<X>570</X><Y>270</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="true" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[Stream.of(
+	references().use(10.0, skPowerStationReference("Charlot River Hydroelectric Station")),
+	references().use(186.0, skPowerStationReference("Coteau Creek Hydroelectric Station")),
+	references().use(289.0, skPowerStationReference("E.B. Campbell Hydroelectric Station")),
+	references().use(111.0, skPowerStationReference("Island Falls Hydroelectric Station")),
+	references().use(255.0, skPowerStationReference("Nipawin Hydroelectric Station")),
+	references().use(8.0, skPowerStationReference("Waterloo Hydroelectric Station")),
+	references().use(5.0, skPowerStationReference("Wellington Hydroelectric Station"))
+).reduce(Double::sum).get()]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1629605206265</Id>
+					<Name><![CDATA[StartingWasteHeatGeneratingCapacityMW]]></Name>
+					<X>570</X><Y>380</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="true" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[Stream.of(
+	// Non-Crown corp
+	references().use(5.0, skPowerStationReference("Alameda Heat Recovery Facility")),
+	references().use(5.0, skPowerStationReference("Estin Heat Recovery Facility")),
+	references().use(5.0, skPowerStationReference("Kerrobert Heat Recovery Facility")),
+	references().use(5.0, skPowerStationReference("Lorebum Heat Recovery Facility"))
+).reduce(Double::sum).get()]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1630252438659</Id>
+					<Name><![CDATA[sharedData]]></Name>
+					<X>810</X><Y>80</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="true" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[StandardReferences]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[new StandardReferences(references())]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
 				<Variable Class="StockVariable">
 					<Id>1629208675933</Id>
-					<Name><![CDATA[EmissionsToDate]]></Name>
-					<X>240</X><Y>190</Y>
+					<Name><![CDATA[EmissionsToDateMT]]></Name>
+					<X>330</X><Y>190</Y>
+					<Label><X>0</X><Y>-20</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties Array="false">
+					<EquationStyle>classic</EquationStyle>
+					<Width>20</Width>
+					<Height>20</Height>
+						<InitialValue><![CDATA[0]]></InitialValue>
+						<Color/>
+					</Properties>
+				</Variable>
+				<Variable Class="StockVariable">
+					<Id>1629384600700</Id>
+					<Name><![CDATA[CostsToDate]]></Name>
+					<X>330</X><Y>290</Y>
+					<Label><X>0</X><Y>-20</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties Array="false">
+					<EquationStyle>classic</EquationStyle>
+					<Width>20</Width>
+					<Height>20</Height>
+						<InitialValue><![CDATA[0]]></InitialValue>
+						<Color/>
+					</Properties>
+				</Variable>
+				<Variable Class="StockVariable">
+					<Id>1630210644188</Id>
+					<Name><![CDATA[PowerGeneratedMWh]]></Name>
+					<X>330</X><Y>360</Y>
 					<Label><X>0</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -129,24 +308,151 @@
 				</Variable>
 				<Variable Class="Flow">
 					<Id>1629208674130</Id>
-					<Name><![CDATA[emissionsAccumulate]]></Name>
-					<X>40</X><Y>190</Y>
+					<Name><![CDATA[emissionsAccumulateMT]]></Name>
+					<X>50</X><Y>190</Y>
 					<Label><X>0</X><Y>-20</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties TargetId="1629208675933" External="false" Constant="false" Array="false">
-						<Formula><![CDATA[boundaryDamPowerStationUnit3.getEmissionsMTPTU().get()]]></Formula>
+						<Formula><![CDATA[getEmissionsPTU()]]></Formula>
 						<Color/>
 						<ValveIndex>1</ValveIndex>
 						<Points>
 							<Point><X>0</X><Y>0</Y></Point>
 							<Point><X>100</X><Y>0</Y></Point>
-							<Point><X>200</X><Y>0</Y></Point>
+							<Point><X>280</X><Y>0</Y></Point>
 						</Points>
 					</Properties>
 				</Variable>
+				<Variable Class="Flow">
+					<Id>1629384600696</Id>
+					<Name><![CDATA[costsAccumulate]]></Name>
+					<X>50</X><Y>290</Y>
+					<Label><X>0</X><Y>-20</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties TargetId="1629384600700" External="false" Constant="false" Array="false">
+						<Formula><![CDATA[getCosts()]]></Formula>
+						<Color/>
+						<ValveIndex>1</ValveIndex>
+						<Points>
+							<Point><X>0</X><Y>0</Y></Point>
+							<Point><X>100</X><Y>0</Y></Point>
+							<Point><X>280</X><Y>0</Y></Point>
+						</Points>
+					</Properties>
+				</Variable>
+				<Variable Class="Flow">
+					<Id>1630210644182</Id>
+					<Name><![CDATA[powerAccumulatesMWh]]></Name>
+					<X>50</X><Y>360</Y>
+					<Label><X>0</X><Y>-20</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties TargetId="1630210644188" External="false" Constant="false" Array="false">
+						<Formula><![CDATA[getPowerOutputMW() * hour()]]></Formula>
+						<Color/>
+						<ValveIndex>1</ValveIndex>
+						<Points>
+							<Point><X>0</X><Y>0</Y></Point>
+							<Point><X>100</X><Y>0</Y></Point>
+							<Point><X>280</X><Y>0</Y></Point>
+						</Points>
+					</Properties>
+				</Variable>
+				<Variable Class="CollectionVariable">
+					<Id>1629605329551</Id>
+					<Name><![CDATA[powerSources]]></Name>
+					<X>810</X><Y>50</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
+						<CollectionClass><![CDATA[ArrayList]]></CollectionClass>
+						<ElementClass><![CDATA[LargePowerSource]]></ElementClass>
+						<ValueElementClass><![CDATA[String]]></ValueElementClass>
+						<CollectionInitializer Class="CodeValue">
+							<Code><![CDATA[{existingNaturalGasPowerStations, existingWindPowerStations, existingHydroElectricrPowerStations, existingCoalPowerStations, existingWasteHeatPowerStations}]]></Code>
+						</CollectionInitializer>
+					</Properties>
+
+				</Variable>
 			</Variables>
+			<Functions>
+				<Function AccessType="private" StaticFunction="false">
+					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1629347287914</Id>
+					<Name><![CDATA[getEmissionsPTU]]></Name>
+					<X>60</X><Y>230</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[return sum(powerSources, ps -> ps.getEmissionsMTPTU().get());]]></Body>
+				</Function>
+				<Function AccessType="private" StaticFunction="false">
+					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1629384657124</Id>
+					<Name><![CDATA[getCosts]]></Name>
+					<X>60</X><Y>320</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[return sum(powerSources, ps -> ps.getOperatingCostsPTU().get());]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+					<ReturnType><![CDATA[ReferenceList]]></ReturnType>
+					<Id>1629603960301</Id>
+					<Name><![CDATA[references]]></Name>
+					<X>550</X><Y>310</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[return bibliography;]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+					<ReturnType><![CDATA[ReferenceList.Citation]]></ReturnType>
+					<Id>1629604297566</Id>
+					<Name><![CDATA[skPowerStationReference]]></Name>
+					<X>550</X><Y>30</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[location]]></Name>
+						<Type><![CDATA[String]]></Type>
+					</Parameter>
+					<Body><![CDATA[return references()
+	.citation("Capacity MW: " + location)
+	.title("List of generating stations in Saskatchewan")
+	.authority("Wikipedia")
+	.URL("https://en.wikipedia.org/wiki/List_of_generating_stations_in_Saskatchewan")
+	.accessed(2021, 8, 21);]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1629605308077</Id>
+					<Name><![CDATA[getPowerOutputMW]]></Name>
+					<X>60</X><Y>400</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[return sum(powerSources, ps -> ps.getPowerOutputMW().get());]]></Body>
+				</Function>
+			</Functions>
 			<AgentLinks>
 				<AgentLink>
 					<Id>1628699862727</Id>
@@ -171,48 +477,45 @@
 
 			<EmbeddedObjects>
 				<EmbeddedObject>
-					<Id>1629208223428</Id>
-					<Name><![CDATA[boundaryDamPowerStationUnit3]]></Name>
-					<X>80</X><Y>60</Y>
-					<Label><X>15</X><Y>-5</Y></Label>
+					<Id>1629603775948</Id>
+					<Name><![CDATA[existingNaturalGasPowerStations]]></Name>
+					<X>550</X><Y>120</Y>
+					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<PresentationId>1629208225018</PresentationId>
+					<PresentationId>1629603777115</PresentationId>
 					<ActiveObjectClass>
 						<PackageName><![CDATA[ca.sccs.core.tactics]]></PackageName>
-						<ClassName><![CDATA[FossilFuelPowerSource]]></ClassName>
+						<ClassName><![CDATA[LargePowerSource]]></ClassName>
 					</ActiveObjectClass>
 					<GenericParameterSubstitute>
 						<GenericParameterSubstituteReference>
 							<PackageName><![CDATA[ca.sccs.core.tactics]]></PackageName>
-							<ClassName><![CDATA[FossilFuelPowerSource]]></ClassName>
+							<ClassName><![CDATA[LargePowerSource]]></ClassName>
 							<ItemName><![CDATA[1629120749358]]></ItemName>
 						</GenericParameterSubstituteReference>
 					</GenericParameterSubstitute>
 					<Parameters>
 						<Parameter>
-							<Name><![CDATA[emissionsMTPM]]></Name>
+							<Name><![CDATA[emissionsMTPA]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[powerOutputMW]]></Name>
 							<Value Class="CodeValue">
-								<Code><![CDATA[(1 / 12.0) / (0.90) // Apparently 1M MT is 90% reduction in annual output, so 1M / 90%]]></Code>
+								<Code><![CDATA[StartingNaturalGasGeneratingCapacityMW]]></Code>
 							</Value>
 						</Parameter>
 						<Parameter>
-							<Name><![CDATA[powerOutputMWh]]></Name>
+							<Name><![CDATA[operatingCostPMWh]]></Name>
 							<Value Class="CodeValue">
-								<Code><![CDATA[120]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[operatingCost]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[0]]></Code>
+								<Code><![CDATA[sharedData.getNaturalGasCostPMWh()]]></Code>
 							</Value>
 						</Parameter>
 					</Parameters>
 					<ReplicationFlag>false</ReplicationFlag>
 					<Replication Class="CodeValue">
-						<Code><![CDATA[3]]></Code>
+						<Code><![CDATA[100]]></Code>
 					</Replication>
 					<CollectionType>ARRAY_LIST_BASED</CollectionType>
 					<InEnvironment>true</InEnvironment>	
@@ -241,7 +544,7 @@
 					<LocationNameCode Class="CodeValue">
 						<Code><![CDATA[""]]></Code>
 					</LocationNameCode>
-					<InitializationType>LOAD_FROM_DATABASE</InitializationType>
+					<InitializationType>SPECIFIED_NUMBER</InitializationType>
 					<InitializationDatabaseTableQuery>
 						<TableReference>
 						</TableReference>
@@ -251,9 +554,163 @@
 					</QuantityColumn>
 				</EmbeddedObject>
 				<EmbeddedObject>
-					<Id>1629208519150</Id>
-					<Name><![CDATA[boundaryDamUnit3CCS]]></Name>
-					<X>100</X><Y>80</Y>
+					<Id>1629603800922</Id>
+					<Name><![CDATA[existingWindPowerStations]]></Name>
+					<X>550</X><Y>190</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<PresentationId>1629603803091</PresentationId>
+					<ActiveObjectClass>
+						<PackageName><![CDATA[ca.sccs.core.tactics]]></PackageName>
+						<ClassName><![CDATA[LargePowerSource]]></ClassName>
+					</ActiveObjectClass>
+					<GenericParameterSubstitute>
+						<GenericParameterSubstituteReference>
+							<PackageName><![CDATA[ca.sccs.core.tactics]]></PackageName>
+							<ClassName><![CDATA[LargePowerSource]]></ClassName>
+							<ItemName><![CDATA[1629120749358]]></ItemName>
+						</GenericParameterSubstituteReference>
+					</GenericParameterSubstitute>
+					<Parameters>
+						<Parameter>
+							<Name><![CDATA[emissionsMTPA]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[powerOutputMW]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[StartingWindGeneratingCapacityMW]]></Code>
+							</Value>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[operatingCostPMWh]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[sharedData.getWindCostPMWh()]]></Code>
+							</Value>
+						</Parameter>
+					</Parameters>
+					<ReplicationFlag>false</ReplicationFlag>
+					<Replication Class="CodeValue">
+						<Code><![CDATA[100]]></Code>
+					</Replication>
+					<CollectionType>ARRAY_LIST_BASED</CollectionType>
+					<InEnvironment>true</InEnvironment>	
+					<InitialLocationType>AT_ANIMATION_POSITION</InitialLocationType>
+					<XCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</XCode>
+					<YCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</YCode>
+					<ZCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</ZCode>
+					<ColumnCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</ColumnCode>
+					<RowCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</RowCode>
+					<LatitudeCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</LatitudeCode>
+					<LongitudeCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</LongitudeCode>
+					<LocationNameCode Class="CodeValue">
+						<Code><![CDATA[""]]></Code>
+					</LocationNameCode>
+					<InitializationType>SPECIFIED_NUMBER</InitializationType>
+					<InitializationDatabaseTableQuery>
+						<TableReference>
+						</TableReference>
+					</InitializationDatabaseTableQuery>
+					<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+					<QuantityColumn>
+					</QuantityColumn>
+				</EmbeddedObject>
+				<EmbeddedObject>
+					<Id>1629603820615</Id>
+					<Name><![CDATA[existingHydroElectricrPowerStations]]></Name>
+					<X>550</X><Y>250</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<PresentationId>1629603823361</PresentationId>
+					<ActiveObjectClass>
+						<PackageName><![CDATA[ca.sccs.core.tactics]]></PackageName>
+						<ClassName><![CDATA[LargePowerSource]]></ClassName>
+					</ActiveObjectClass>
+					<GenericParameterSubstitute>
+						<GenericParameterSubstituteReference>
+							<PackageName><![CDATA[ca.sccs.core.tactics]]></PackageName>
+							<ClassName><![CDATA[LargePowerSource]]></ClassName>
+							<ItemName><![CDATA[1629120749358]]></ItemName>
+						</GenericParameterSubstituteReference>
+					</GenericParameterSubstitute>
+					<Parameters>
+						<Parameter>
+							<Name><![CDATA[emissionsMTPA]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[powerOutputMW]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[StartingHydroelectricGeneratingCapacityMW]]></Code>
+							</Value>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[operatingCostPMWh]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[sharedData.getHydroCostPMWh()]]></Code>
+							</Value>
+						</Parameter>
+					</Parameters>
+					<ReplicationFlag>false</ReplicationFlag>
+					<Replication Class="CodeValue">
+						<Code><![CDATA[100]]></Code>
+					</Replication>
+					<CollectionType>ARRAY_LIST_BASED</CollectionType>
+					<InEnvironment>true</InEnvironment>	
+					<InitialLocationType>AT_ANIMATION_POSITION</InitialLocationType>
+					<XCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</XCode>
+					<YCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</YCode>
+					<ZCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</ZCode>
+					<ColumnCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</ColumnCode>
+					<RowCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</RowCode>
+					<LatitudeCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</LatitudeCode>
+					<LongitudeCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</LongitudeCode>
+					<LocationNameCode Class="CodeValue">
+						<Code><![CDATA[""]]></Code>
+					</LocationNameCode>
+					<InitializationType>SPECIFIED_NUMBER</InitializationType>
+					<InitializationDatabaseTableQuery>
+						<TableReference>
+						</TableReference>
+					</InitializationDatabaseTableQuery>
+					<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+					<QuantityColumn>
+					</QuantityColumn>
+				</EmbeddedObject>
+				<EmbeddedObject>
+					<Id>1629603869484</Id>
+					<Name><![CDATA[allNaturalGasStationsCCS]]></Name>
+					<X>570</X><Y>140</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -272,32 +729,173 @@
 					<Parameters>
 						<Parameter>
 							<Name><![CDATA[monthsUntilCompleted]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[12]]></Code>
-							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[costToUpgrade]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[1_500_000_000.0]]></Code>
-							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[costToMaintainPTU]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[0]]></Code>
-							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[resultingEmissionsFraction]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[0.90]]></Code>
-							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[monthsUntilUpgrade]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[startOnline]]></Name>
+						</Parameter>
+					</Parameters>
+					<ReplicationFlag>false</ReplicationFlag>
+					<Replication Class="CodeValue">
+						<Code><![CDATA[100]]></Code>
+					</Replication>
+					<CollectionType>ARRAY_LIST_BASED</CollectionType>
+					<InEnvironment>true</InEnvironment>	
+					<InitialLocationType>AT_ANIMATION_POSITION</InitialLocationType>
+					<XCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</XCode>
+					<YCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</YCode>
+					<ZCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</ZCode>
+					<ColumnCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</ColumnCode>
+					<RowCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</RowCode>
+					<LatitudeCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</LatitudeCode>
+					<LongitudeCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</LongitudeCode>
+					<LocationNameCode Class="CodeValue">
+						<Code><![CDATA[""]]></Code>
+					</LocationNameCode>
+					<InitializationType>SPECIFIED_NUMBER</InitializationType>
+					<InitializationDatabaseTableQuery>
+						<TableReference>
+						</TableReference>
+					</InitializationDatabaseTableQuery>
+					<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+					<QuantityColumn>
+					</QuantityColumn>
+				</EmbeddedObject>
+				<EmbeddedObject>
+					<Id>1629603891086</Id>
+					<Name><![CDATA[existingCoalPowerStations]]></Name>
+					<X>550</X><Y>50</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<PresentationId>1629603892628</PresentationId>
+					<ActiveObjectClass>
+						<PackageName><![CDATA[ca.sccs.core.tactics]]></PackageName>
+						<ClassName><![CDATA[LargePowerSource]]></ClassName>
+					</ActiveObjectClass>
+					<GenericParameterSubstitute>
+						<GenericParameterSubstituteReference>
+							<PackageName><![CDATA[ca.sccs.core.tactics]]></PackageName>
+							<ClassName><![CDATA[LargePowerSource]]></ClassName>
+							<ItemName><![CDATA[1629120749358]]></ItemName>
+						</GenericParameterSubstituteReference>
+					</GenericParameterSubstitute>
+					<Parameters>
+						<Parameter>
+							<Name><![CDATA[emissionsMTPA]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[powerOutputMW]]></Name>
 							<Value Class="CodeValue">
-								<Code><![CDATA[4]]></Code>
+								<Code><![CDATA[StartingCoalGeneratingCapacityMW]]></Code>
+							</Value>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[operatingCostPMWh]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[sharedData.getCoalCostPMWh()]]></Code>
+							</Value>
+						</Parameter>
+					</Parameters>
+					<ReplicationFlag>false</ReplicationFlag>
+					<Replication Class="CodeValue">
+						<Code><![CDATA[100]]></Code>
+					</Replication>
+					<CollectionType>ARRAY_LIST_BASED</CollectionType>
+					<InEnvironment>true</InEnvironment>	
+					<InitialLocationType>AT_ANIMATION_POSITION</InitialLocationType>
+					<XCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</XCode>
+					<YCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</YCode>
+					<ZCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</ZCode>
+					<ColumnCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</ColumnCode>
+					<RowCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</RowCode>
+					<LatitudeCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</LatitudeCode>
+					<LongitudeCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</LongitudeCode>
+					<LocationNameCode Class="CodeValue">
+						<Code><![CDATA[""]]></Code>
+					</LocationNameCode>
+					<InitializationType>SPECIFIED_NUMBER</InitializationType>
+					<InitializationDatabaseTableQuery>
+						<TableReference>
+						</TableReference>
+					</InitializationDatabaseTableQuery>
+					<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+					<QuantityColumn>
+					</QuantityColumn>
+				</EmbeddedObject>
+				<EmbeddedObject>
+					<Id>1629605187007</Id>
+					<Name><![CDATA[existingWasteHeatPowerStations]]></Name>
+					<X>550</X><Y>360</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<ActiveObjectClass>
+						<PackageName><![CDATA[ca.sccs.core.tactics]]></PackageName>
+						<ClassName><![CDATA[LargePowerSource]]></ClassName>
+					</ActiveObjectClass>
+					<GenericParameterSubstitute>
+						<GenericParameterSubstituteReference>
+							<PackageName><![CDATA[ca.sccs.core.tactics]]></PackageName>
+							<ClassName><![CDATA[LargePowerSource]]></ClassName>
+							<ItemName><![CDATA[1629120749358]]></ItemName>
+						</GenericParameterSubstituteReference>
+					</GenericParameterSubstitute>
+					<Parameters>
+						<Parameter>
+							<Name><![CDATA[emissionsMTPA]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[powerOutputMW]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[StartingWasteHeatGeneratingCapacityMW]]></Code>
+							</Value>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[operatingCostPMWh]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[sharedData.getWasteHeatCostPMWh()]]></Code>
 							</Value>
 						</Parameter>
 					</Parameters>
@@ -358,8 +956,65 @@
 
 			<Presentation>
 				<EmbeddedObjectPresentation>
-					<Id>1629208225018</Id>
-					<Name><![CDATA[boundaryDamPowerStationUnit3_presentation]]></Name>
+					<Id>1629603777115</Id>
+					<Name><![CDATA[existingNaturalGasPowerStations_presentation]]></Name>
+					<X>0</X><Y>0</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<DrawingMode>AGENT_CURRENT_POSITION</DrawingMode>
+					<ScaleType>AUTOMATICALLY_CALCULATED</ScaleType>
+					<GISScaleForRealEmbeddedObjectPresentationSize>1000</GISScaleForRealEmbeddedObjectPresentationSize>
+					<GISScaleForFixedEmbeddedObjectPresentationSize>1000000000</GISScaleForFixedEmbeddedObjectPresentationSize>
+					<Latitude>0.0</Latitude>
+					<Longitude>0.0</Longitude>
+				</EmbeddedObjectPresentation>
+				<EmbeddedObjectPresentation>
+					<Id>1629603803091</Id>
+					<Name><![CDATA[existingWindPowerStations_presentation]]></Name>
+					<X>0</X><Y>0</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<DrawingMode>AGENT_CURRENT_POSITION</DrawingMode>
+					<ScaleType>AUTOMATICALLY_CALCULATED</ScaleType>
+					<GISScaleForRealEmbeddedObjectPresentationSize>1000</GISScaleForRealEmbeddedObjectPresentationSize>
+					<GISScaleForFixedEmbeddedObjectPresentationSize>1000000000</GISScaleForFixedEmbeddedObjectPresentationSize>
+					<Latitude>0.0</Latitude>
+					<Longitude>0.0</Longitude>
+				</EmbeddedObjectPresentation>
+				<EmbeddedObjectPresentation>
+					<Id>1629603823361</Id>
+					<Name><![CDATA[existingHydroElectricrPowerStations_presentation]]></Name>
+					<X>0</X><Y>0</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<DrawingMode>AGENT_CURRENT_POSITION</DrawingMode>
+					<ScaleType>AUTOMATICALLY_CALCULATED</ScaleType>
+					<GISScaleForRealEmbeddedObjectPresentationSize>1000</GISScaleForRealEmbeddedObjectPresentationSize>
+					<GISScaleForFixedEmbeddedObjectPresentationSize>1000000000</GISScaleForFixedEmbeddedObjectPresentationSize>
+					<Latitude>0.0</Latitude>
+					<Longitude>0.0</Longitude>
+				</EmbeddedObjectPresentation>
+				<EmbeddedObjectPresentation>
+					<Id>1629603892628</Id>
+					<Name><![CDATA[existingCoalPowerStations_presentation]]></Name>
 					<X>0</X><Y>0</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -617,7 +1272,7 @@
 			<Name><![CDATA[Simulation]]></Name>
 			<ClientAreaTopLeft><X>0</X><Y>0</Y></ClientAreaTopLeft>
 			<CommandLineArguments><![CDATA[]]></CommandLineArguments>
-			<MaximumMemory>512</MaximumMemory>
+			<MaximumMemory>2048</MaximumMemory>
 			<RandomNumberGenerationType>fixedSeed</RandomNumberGenerationType>
 			<CustomGeneratorCode>new Random()</CustomGeneratorCode>
 			<SeedValue>1</SeedValue>
@@ -653,160 +1308,36 @@
 			</Parameters>			
 			<PresentationProperties>
 				<EnableZoomAndPanning>true</EnableZoomAndPanning>
-				<ExecutionMode><![CDATA[realTimeScaled]]></ExecutionMode>
+				<ExecutionMode><![CDATA[virtualTime]]></ExecutionMode>
 				<Title><![CDATA[single-cycle-climate-solutions : Simulation]]></Title>	
 				<EnableDeveloperPanel>true</EnableDeveloperPanel>
 				<ShowDeveloperPanelOnStart>false</ShowDeveloperPanelOnStart>
 				<RealTimeScale>1.0</RealTimeScale>
 			</PresentationProperties>
 			<ModelTimeProperties>
-				<StopOption><![CDATA[Never]]></StopOption>
+				<StopOption><![CDATA[Stop at specified time]]></StopOption>
 				<InitialDate><![CDATA[1628640000000]]></InitialDate>	
 				<InitialTime><![CDATA[0.0]]></InitialTime>	
-				<FinalDate><![CDATA[1631318400000]]></FinalDate>	
-				<FinalTime><![CDATA[100.0]]></FinalTime>	
+				<FinalDate><![CDATA[1753056000000]]></FinalDate>	
+				<FinalTime><![CDATA[48.0]]></FinalTime>	
 			</ModelTimeProperties>
 			<BypassInitialScreen>true</BypassInitialScreen>
 		</SimulationExperiment>	
 	</Experiments>
-	<JavaClasses>
-		<!--   =========   Java Class   ========  -->
-		<JavaClass>
-			<Id>1628794886303</Id>
-			<Name><![CDATA[Tactic]]></Name>
-			<Text><![CDATA[import java.util.function.Consumer;
-
-/**
- * A tactic that may be applied on a particular date.
- * E.g. begin constructing a solar farm.
- * @author dknowles
- *
- */
-public interface Tactic extends Consumer<Date>
-{
-
-}]]></Text>
-		</JavaClass>
-		<!--   =========   Java Class   ========  -->
-		<JavaClass>
-			<Id>1628794984474</Id>
-			<Name><![CDATA[Strategy]]></Name>
-			<Text><![CDATA[/**
- * A collection of tactics used to accomplish a specific goal.
- */	
-public class Strategy implements Serializable {
-	
-	/**
-	 * @see #getTactics()
-	 */
-	private Map<Tactic, Date> tactics;
-
-    /**
-     * Creates the strategy, recording its tactics
-     * and their intended start date.
-     */
-    public Strategy(Map<Tactic, Date> tactics) {
-    }
-    
-	/**
-	 * The tactics that will be applied in the strategy.
-	 */
-    public Map<Tactic, Date> getTactics() {
-    	return Collections.unmodifiableMap(this.tactics);
-    }
-    
-
-}]]></Text>
-		</JavaClass>
-		<!--   =========   Java Class   ========  -->
-		<JavaClass>
-			<Id>1628796624477</Id>
-			<Name><![CDATA[SeasonalValue]]></Name>
-			<Text><![CDATA[/**
- * A value that may or may not value by season or time.
- * @author dknowles
- *
- */
-public interface SeasonalValue
-{
-	/**
-	 * @pre date not null
-	 * @return
-	 * 	The value at the given time.
-	 */
-	double get(Date date);
-}]]></Text>
-		</JavaClass>
-		<!--   =========   Java Class   ========  -->
-		<JavaClass>
-			<Id>1628796720061</Id>
-			<Name><![CDATA[NoSeasonalVariationValue]]></Name>
-			<Text><![CDATA[/**
- * A value that doesn't change with time.
- */	
-public class NoSeasonalVariationValue implements SeasonalValue {
-
-	private double value;
-	
-    /**
-     * Default constructor
-     */
-    public NoSeasonalVariationValue(double value) {
-    	this.value = value;
-    }
-
-    @Override
-    public double get(Date date) {
-    	return value;
-    }
-}]]></Text>
-		</JavaClass>
-		<!--   =========   Java Class   ========  -->
-		<JavaClass>
-			<Id>1628888967954</Id>
-			<Name><![CDATA[CanReportRegionalStatistics]]></Name>
-			<Text><![CDATA[/**
- * 
- * @author dknowles
- *
- */
-public interface CanReportRegionalStatistics
-{
-	double getGreenhouseGasEmissionsPTU();
-	double getCostOfReducingGreenhouseGasEmissionsPTU();
-}]]></Text>
-		</JavaClass>
-		<!--   =========   Java Class   ========  -->
-		<JavaClass>
-			<Id>1629120592870</Id>
-			<Name><![CDATA[Output]]></Name>
-			<Text><![CDATA[import java.util.function.*;
-
-/**
- * A numeric output that may be further modified.
- * @author dknowles
- *
- */
-public interface Output extends Supplier<Double>
-{
-	public default Output modify(Function<Double, Double> transform) {
-		return () -> transform.apply(this.get());
-	}
-	
-	public default Output multiply(Supplier<Double> transform) {
-		return () -> transform.get() * this.get();
-	}
-	
-	public default Output add(Supplier<Double> transform) {
-		return () -> transform.get() + this.get();
-	}
-	
-	public default Output unchanged() {
-		return this;
-	}
-}]]></Text>
-		</JavaClass>
-	</JavaClasses>
+	<ModelResources>
+		<Resource>
+			<Path><![CDATA[../lib/citeproc-java-2.0.0.jar]]></Path>
+			<ReferencedFromUserCode>false</ReferencedFromUserCode>
+		</Resource>
+		<Resource>
+			<Path><![CDATA[../lib/lombok.jar]]></Path>
+			<ReferencedFromUserCode>false</ReferencedFromUserCode>
+		</Resource>
+		<Resource>
+			<Path><![CDATA[../lib/utilities-1.0-SNAPSHOT.jar]]></Path>
+			<ReferencedFromUserCode>false</ReferencedFromUserCode>
+		</Resource>
+	</ModelResources>
     <RequiredLibraryReference>
 		<LibraryName><![CDATA[com.anylogic.libraries.modules.markup_descriptors]]></LibraryName>
 		<VersionMajor>1</VersionMajor>
@@ -819,5 +1350,29 @@ public interface Output extends Supplier<Double>
 		<VersionMinor>0</VersionMinor>
 		<VersionBuild>0</VersionBuild>
     </RequiredLibraryReference>
+	<ClassPathEntry>
+		<ResourceReference>
+			<PackageName><![CDATA[ca.sccs.region.canada.saskatchewan]]></PackageName>
+			<ClassName><![CDATA[../lib/citeproc-java-2.0.0.jar]]></ClassName>
+		</ResourceReference>
+		<Imported>false</Imported>
+		<Folder>false</Folder>
+	</ClassPathEntry>
+	<ClassPathEntry>
+		<ResourceReference>
+			<PackageName><![CDATA[ca.sccs.region.canada.saskatchewan]]></PackageName>
+			<ClassName><![CDATA[../lib/lombok.jar]]></ClassName>
+		</ResourceReference>
+		<Imported>false</Imported>
+		<Folder>false</Folder>
+	</ClassPathEntry>
+	<ClassPathEntry>
+		<ResourceReference>
+			<PackageName><![CDATA[ca.sccs.region.canada.saskatchewan]]></PackageName>
+			<ClassName><![CDATA[../lib/utilities-1.0-SNAPSHOT.jar]]></ClassName>
+		</ResourceReference>
+		<Imported>false</Imported>
+		<Folder>false</Folder>
+	</ClassPathEntry>
 </Model>
 </AnyLogicWorkspace>

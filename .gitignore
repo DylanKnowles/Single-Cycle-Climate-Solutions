@@ -1,5 +1,8 @@
 .DS_Store
 
+# AnyLogic
+*alp.autosave
+
 # Compiled class file
 *.class
 

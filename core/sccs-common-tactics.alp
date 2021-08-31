@@ -7,7 +7,7 @@
 <AnyLogicWorkspace WorkspaceVersion="1.9" AnyLogicVersion="8.7.6.202107211738" AlpVersion="8.7.2">
 <Model>
 	<Id>1628699862713</Id>
-	<Name><![CDATA[scss-common-tactics]]></Name>
+	<Name><![CDATA[sccs-common-tactics]]></Name>
 	<EngineVersion>6</EngineVersion>
 	<JavaPackageName><![CDATA[ca.sccs.core.tactics]]></JavaPackageName>
 	<ModelTimeUnit><![CDATA[Month]]></ModelTimeUnit>
@@ -354,6 +354,30 @@
 						</ParameterEditor>
 					</Properties>                 
 				</Variable>
+				<Variable Class="Parameter">
+					<Id>1629385249109</Id>
+					<Name><![CDATA[startOnline]]></Name>
+					<X>20</X><Y>120</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[boolean]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[false]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1629385249107</Id>
+							<EditorContolType>CHECK_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
 			</Variables>
 			<StatechartElements>
 				<StatechartElement Class="State" ParentState="ROOT_NODE">
@@ -395,7 +419,7 @@
 				<StatechartElement Class="EntryPoint" ParentState="ROOT_NODE">
 					<Id>1628888862057</Id>
 					<Name><![CDATA[sequestrationState]]></Name>
-					<X>370.379</X><Y>70</Y>
+					<X>370</X><Y>70</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -467,6 +491,38 @@
 						<SatisfiesExpression><![CDATA[true]]></SatisfiesExpression>
 					</Properties>	
 				</StatechartElement>
+				<StatechartElement Class="Transition" ParentState="ROOT_NODE">
+					<Id>1629385374636</Id>
+					<Name><![CDATA[transition3]]></Name>
+					<X>320</X><Y>120</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Points>
+						<Point><X>0</X><Y>0</Y></Point>
+						<Point><X>-20</X><Y>0</Y></Point>
+						<Point><X>-20</X><Y>150</Y></Point>
+						<Point><X>0</X><Y>150</Y></Point>
+					</Points>
+					<IconOffset>20.0</IconOffset>
+					<Properties Source="1628888862051" Target="1628888862055" Trigger="timeout">
+						<Timeout Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="TimeUnits"><![CDATA[MILLISECOND]]></Unit>
+						</Timeout>
+						<Condition><![CDATA[startOnline]]></Condition>
+						<Rate Class="CodeUnitValue">
+							<Code><![CDATA[1]]></Code>
+							<Unit Class="RateUnits"><![CDATA[PER_MONTH]]></Unit>
+						</Rate>
+						<MessageType><![CDATA[Object]]></MessageType>
+						<DefaultTransition>false</DefaultTransition>
+						<FilterType><![CDATA[unconditionally]]></FilterType>
+						<EqualsExpression><![CDATA["text"]]></EqualsExpression>
+						<SatisfiesExpression><![CDATA[true]]></SatisfiesExpression>
+					</Properties>	
+				</StatechartElement>
 			</StatechartElements>
 			<Functions>
 				<Function AccessType="public" StaticFunction="false">
@@ -490,7 +546,7 @@
 		}
 		return 1.0;
 	}),
-	in.getPowerOutputMWh().unchanged(),
+	in.getPowerOutputMW().unchanged(),
 	in.getOperatingCostsPTU().add(() -> costToMaintainPTU)
 );]]></Body>
 				</Function>
@@ -544,7 +600,7 @@
 		<!--   =========   Active Object Class   ========  -->
 		<ActiveObjectClass>
 			<Id>1629120749360</Id>
-			<Name><![CDATA[FossilFuelPowerSource]]></Name>
+			<Name><![CDATA[LargePowerSource]]></Name>
 			<ClientAreaTopLeft><X>0</X><Y>0</Y></ClientAreaTopLeft>
 			<Implements><![CDATA[PowerSource]]></Implements>
 			<Generic>false</Generic>
@@ -654,7 +710,7 @@
 				</Variable>
 				<Variable Class="Parameter">
 					<Id>1629120839015</Id>
-					<Name><![CDATA[emissionsMTPM]]></Name>
+					<Name><![CDATA[emissionsMTPA]]></Name>
 					<X>20</X><Y>120</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -675,7 +731,7 @@
 				</Variable>
 				<Variable Class="Parameter">
 					<Id>1629120848805</Id>
-					<Name><![CDATA[powerOutputMWh]]></Name>
+					<Name><![CDATA[powerOutputMW]]></Name>
 					<X>20</X><Y>140</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -696,7 +752,7 @@
 				</Variable>
 				<Variable Class="Parameter">
 					<Id>1629121039701</Id>
-					<Name><![CDATA[operatingCost]]></Name>
+					<Name><![CDATA[operatingCostPMWh]]></Name>
 					<X>20</X><Y>160</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -748,13 +804,13 @@
 					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 					<ReturnType><![CDATA[Output]]></ReturnType>
 					<Id>1629120978835</Id>
-					<Name><![CDATA[getPowerOutputMWh]]></Name>
+					<Name><![CDATA[getPowerOutputMW]]></Name>
 					<X>200</X><Y>50</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[return modifiedOutputs == null ? (() -> 0.0) : modifiedOutputs.getPowerOutputMWh();]]></Body>
+					<Body><![CDATA[return modifiedOutputs == null ? (() -> 0.0) : modifiedOutputs.getPowerOutputMW();]]></Body>
 				</Function>
 				<Function AccessType="public" StaticFunction="false">
 					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
@@ -784,9 +840,9 @@
 					</Parameter>
 					<Body><![CDATA[this.tactics.addAll(tactics);
 modifiedOutputs = PowerSource.of(
-	() -> emissionsMTPM / month(), 
-	() -> powerOutputMWh, 
-	() -> operatingCost
+	() -> emissionsMTPA / year(), 
+	() -> powerOutputMW, 
+	() -> powerOutputMW * operatingCostPMWh / hour()
 );
 for (Tactic next : tactics) {
 	modifiedOutputs = next.modify(modifiedOutputs);
@@ -1358,18 +1414,18 @@ for (Tactic next : tactics) {
 			</Parameters>			
 			<PresentationProperties>
 				<EnableZoomAndPanning>true</EnableZoomAndPanning>
-				<ExecutionMode><![CDATA[realTimeScaled]]></ExecutionMode>
+				<ExecutionMode><![CDATA[virtualTime]]></ExecutionMode>
 				<Title><![CDATA[single-cycle-climate-solutions : Simulation]]></Title>	
 				<EnableDeveloperPanel>true</EnableDeveloperPanel>
 				<ShowDeveloperPanelOnStart>false</ShowDeveloperPanelOnStart>
 				<RealTimeScale>1.0</RealTimeScale>
 			</PresentationProperties>
 			<ModelTimeProperties>
-				<StopOption><![CDATA[Never]]></StopOption>
+				<StopOption><![CDATA[Stop at specified time]]></StopOption>
 				<InitialDate><![CDATA[1628640000000]]></InitialDate>	
 				<InitialTime><![CDATA[0.0]]></InitialTime>	
-				<FinalDate><![CDATA[1631318400000]]></FinalDate>	
-				<FinalTime><![CDATA[100.0]]></FinalTime>	
+				<FinalDate><![CDATA[1753056000000]]></FinalDate>	
+				<FinalTime><![CDATA[48.0]]></FinalTime>	
 			</ModelTimeProperties>
 			<BypassInitialScreen>true</BypassInitialScreen>
 		</SimulationExperiment>	
@@ -1384,10 +1440,9 @@ for (Tactic next : tactics) {
  * @author dknowles
  *
  */
-public interface PowerSource
+public interface PowerSource extends Opportunity
 {
-	Output getEmissionsMTPTU();
-	Output getPowerOutputMWh();
+	Output getPowerOutputMW();
 	Output getOperatingCostsPTU();
 	
 	/**
@@ -1408,7 +1463,7 @@ public interface PowerSource
 				return cost;
 			}
 			@Override
-			public Output getPowerOutputMWh() {
+			public Output getPowerOutputMW() {
 				return power;
 			}
 		};
@@ -1423,9 +1478,87 @@ public interface PowerSource
 	static interface Tactic {
 		PowerSource modify(PowerSource in);
 	}
+	
+	/**
+	 * Typical power source types
+	 * @author dknowles
+	 *
+	 */
+	static enum Type {
+		Coal,
+		Wind,
+		Solar,
+		Nuclear,
+		NaturalGas
+	}
+}]]></Text>
+		</JavaClass>
+		<!--   =========   Java Class   ========  -->
+		<JavaClass>
+			<Id>1630251937668</Id>
+			<Name><![CDATA[StandardReferences]]></Name>
+			<Text><![CDATA[import lombok.*;
+import com.luminesim.citation.*;
+import com.luminesim.citation.ReferenceList.Citation;	
+
+
+/**
+ * A set of standard costs and other reference values for baseline estimates.
+ * Improve as better data is found; use region-specific values instead if 
+ * appropriate.
+ */
+@Getter
+public class StandardReferences implements Serializable {
+
+	private ReferenceList references;
+	
+	/** The cost of coal power per MWh. */
+	private double coalCostPMWh;
+	
+	/** The cost of wind power per MWh. */
+	private double windCostPMWh;
+	
+	/** The cost of natural gas power per MWh. */
+	private double naturalGasCostPMWh;
+	
+	public StandardReferences(ReferenceList references) {
+		this.coalCostPMWh = references
+				.use((60.0 + 143.0) / 2.0, references
+				.citation("Cost of Coal Power per MWh")
+				.title("On World Environment Day, everything you know about energy in the US might be wrong")
+				.author("Weise", "Elizabeth")
+				.authority("USA Today")
+				.URL("https://www.usatoday.com/story/news/2019/06/04/climate-change-coal-now-more-expensive-than-wind-solar-energy/1277637001/")
+				.accessed(2021, 8, 29)
+				.originalDate(2019, 6, 5));
+		
+		this.windCostPMWh = references
+				.use(42.00, references
+				.citation("Cost of Wind Power per MWh")
+				.title("Wind Facts")
+				.authority("CanWEA")
+				.note("in October 2018, a competitive procurement in Saskatchewan resulted in an average bid price of $42 per megawatt hour, with the winning bid coming in below $35 per megawatt hour.")
+				.URL("https://canwea.ca/wind-facts/affordable-power/")
+				.accessed(2021, 8, 29));
+		
+	}
 }]]></Text>
 		</JavaClass>
 	</JavaClasses>
+	<ModelResources>
+		<Resource>
+			<Path><![CDATA[../lib/lombok.jar]]></Path>
+			<ReferencedFromUserCode>false</ReferencedFromUserCode>
+		</Resource>
+		<Resource>
+			<Path><![CDATA[../lib/utilities-1.0-SNAPSHOT.jar]]></Path>
+			<ReferencedFromUserCode>false</ReferencedFromUserCode>
+		</Resource>
+		<Resource>
+			<Path><![CDATA[../lib/citeproc-java-2.0.0.jar]]></Path>
+			<ReferencedFromUserCode>false</ReferencedFromUserCode>
+		</Resource>
+	</ModelResources>
     <RequiredLibraryReference>
 		<LibraryName><![CDATA[com.anylogic.libraries.modules.markup_descriptors]]></LibraryName>
 		<VersionMajor>1</VersionMajor>
@@ -1438,5 +1571,29 @@ public interface PowerSource
 		<VersionMinor>0</VersionMinor>
 		<VersionBuild>0</VersionBuild>
     </RequiredLibraryReference>
+	<ClassPathEntry>
+		<ResourceReference>
+			<PackageName><![CDATA[ca.sccs.core.tactics]]></PackageName>
+			<ClassName><![CDATA[../lib/lombok.jar]]></ClassName>
+		</ResourceReference>
+		<Imported>false</Imported>
+		<Folder>false</Folder>
+	</ClassPathEntry>
+	<ClassPathEntry>
+		<ResourceReference>
+			<PackageName><![CDATA[ca.sccs.core.tactics]]></PackageName>
+			<ClassName><![CDATA[../lib/utilities-1.0-SNAPSHOT.jar]]></ClassName>
+		</ResourceReference>
+		<Imported>false</Imported>
+		<Folder>false</Folder>
+	</ClassPathEntry>
+	<ClassPathEntry>
+		<ResourceReference>
+			<PackageName><![CDATA[ca.sccs.core.tactics]]></PackageName>
+			<ClassName><![CDATA[../lib/citeproc-java-2.0.0.jar]]></ClassName>
+		</ResourceReference>
+		<Imported>false</Imported>
+		<Folder>false</Folder>
+	</ClassPathEntry>
 </Model>
 </AnyLogicWorkspace>

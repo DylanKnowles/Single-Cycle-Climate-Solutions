@@ -1,39 +1,73 @@
 # Single-Cycle Climate Solutions
 
-The goal of SCCS is simple: identify the largest possible reduction in greenhouse gas emissions that an area can accomplish in a single election cycle. This reduction can come through multiple strategies in multiple sectors.
+## Project Goal
+**Identify the largest reduction in greenhouse gas emissions that a region can accomplish in a single election cycle using region-specific tactics.** SCCS does this using dynamic simulation modeling with data and tactics provided by modelers and citizen scientists.
 
-The assumptions of SCCS are also simple:
+## Key Assumptions
 
-1. Consumers have made as much individual change as they are able to make. Further individual change is either blocked by environment (e.g. can't buy an electric vehicle as there's no EV stations), cost (e.g. can't upgrade my home insulation as other repairs need to happen first), or cultural barriers (e.g. can't switch to low-meat diet as I'm a rancher and meat is crucial to my identity).
-1. Climate solutions must therefore remove blockers from individuals if individual-level changes are to occur.
-1. Climate solutions that are effectively non-individual, such as power grid energy sources, must be actively changed by policymakers.
-1. Climate solutions that fail to be implemented within a single election cycle will fail.
+SCCS was created on the following assumptions:
 
-The role of SCCS is therefore to evaluate and identify the most effective climate solutions per jurisdiction that can be accomplished in one election cycle. SCCS is decomposed into many pieces, allowing each region to plug and play the solutions relevant to their needs.
+1. Climate solutions can be private or public.
+1. Private individuals and companies have made as much change to address climate change as they are able to make given their circumstances. Further private change is either blocked by infrastructure (e.g. can't buy an electric vehicle because there's no EV stations), cost (e.g. can't upgrade my home insulation as other repairs need to happen first, or high taxes on electric vehicles), or cultural barriers (e.g. can't switch to low-meat diet as I'm a rancher and meat is crucial to my identity). 
+1. Public climate solutions such as upgrading power grids to use renewable sources -- as well as the removal of blockers to private climate solutions -- are in the hands of policymakers: they are therefore at the mercy of election and/or planning cycles.
+1. Policies that fail to be implemented within a single election or planning cycle will fail. Climate solutions, by extension, must therefore be implemented in a single cycle.
+1. There are no public, shared 
+
+The role of SCCS is therefore to help regions and the public identify the most effective climate solutions per jurisdiction that can be accomplished in one election or planning cycle. SCCS is decomposed into many pieces, allowing each region to plug and play the solutions relevant to their needs.
 
 The structure of the project is as follows:
 
 ```
 sccs
 	core
-		runner
 		interfaces
-	tactic
-		tactic-1
-		tactic-2
-		tactic-n
+		utility classes
+		common tactics
+			fossil fuel power source
 	regions
 		region-1
-			model powered by runner and tactics
-			region-specific tactics
+			model
+			region-specific opportunities & tactics
 		region-2
-			model powered by runner and tactics
-			region-specific tactics
+			model
+			region-specific opportunities & tactics
 		region-n
-			model powered by runner and tactics
-			region-specific tactics
+			model
+			region-specific opportunities & tactics
 ```
 
-Each Region implements a Model that reports cost and greenhouse gas emissions. The Region then includes a set of Tactics to reducing its greenhouse gas emissions. This may include general Tactics such as carbon capture on existing coal plants as well as region-specific Tactics such as installing EV chargers in all rural towns. The Model is then attached to a Runner, which allows different Strategies (i.e. a combination of Tactics) to be evaluated. Runners exist for exploring single Strategies visually (useful for the general public), for exploring all combinations of Tactics (e.g. to discover the Strategies with highest ROI), or for exploring Strategies on a budget (i.e. what's the greatest impact that could be made with $1B?).
+Each Region is a simulation model that reports cost and greenhouse gas emissions. Region have on or more Opportunities, which have Tactics to reduce their greenhouse gas emissions (or bring the opportunity online, e.g. wind farm):
+
+```
+Region --has--> Opportunities --modified by--> Tactics
+e.g.
+Saskatchewan --has--> Coal Plants --modified by--> Carbon Capture & Storage
+```
+
+
+This may include general Tactics such as carbon capture on existing coal plants as well as region-specific Tactics such as installing EV chargers in all rural towns. The Region is then attached to an Experiment, which allows different strategies (i.e. a combination of Tactics) to be evaluated. Experiments exist for exploring single Strategies visually (useful for the general public), for exploring all combinations of Tactics (e.g. to discover the strategies with highest ROI), or for exploring strategies on a budget (i.e. what's the greatest impact that could be made with $1B?).
 
 SCCS is being first applied to Saskatchewan, Canada as the region is sparse, has a heavy reliance on fossil fuels for transport and power generation, and has ongoing incentives to maintain fossil fuel production.
+
+## FAQ
+
+### The Data
+
+#### Where do you get data from?
+
+#### How do you know the data is correct?
+
+### Simulation Modeling
+
+#### What is it and how does it work?
+
+### Contributing
+
+#### Who can contribute?
+
+### I can code: how do I contribute?
+
+#### I can't code: how should I suggest improvements?
+
+
+
